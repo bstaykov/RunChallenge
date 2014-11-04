@@ -57,6 +57,7 @@
     <Compile Include="Comment.cs" />
     <Compile Include="CommentLike.cs" />
     <Compile Include="CommentStatus.cs" />
+    <Compile Include="DeleteMe.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventScheduleStatus.cs" />
     <Compile Include="EventVisibilityStatus.cs" />

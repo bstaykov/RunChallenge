@@ -1,4 +1,7 @@
-﻿@{
+﻿@using RunChallenge.Models
+@model RunChallenge.Models.Workout
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -28,4 +31,14 @@
         <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
         <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
     </div>
+</div>
+<div class="jumbotron">
+    <h2>Last workouts</h2>
+    @{
+        var workouts = (System.Collections.IEnumerable)ViewData["LastWorkouts"];
+        foreach (Workout workout in workouts)
+        {
+            <h3>Date: @workout.Date / Distance: @workout.Distance KM / Time: @workout.Time / Comment: @workout.Comment</h3>
+        }
+    }
 </div>

@@ -7,37 +7,22 @@ using System.Web.Mvc;
 
 namespace RunChallenge.MVC.Controllers
 {
-    [OutputCache(Duration = 10)]
-    public class HomeController : Controller
+    public class WorkoutController : Controller
     {
         RunChallengeDbContext dbContext;
 
-        public HomeController()
+        public WorkoutController()
         {
             this.dbContext = new RunChallengeDbContext();
         }
 
+        // GET: Workout
         public ActionResult Index()
         {
             var lastWorkouts = this.dbContext.Workouts
                 .OrderByDescending(w => w.Date)
                 .Take(3);
             ViewData["LastWorkouts"] = lastWorkouts;
-
-            return View();
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

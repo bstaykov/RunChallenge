@@ -1,0 +1,17 @@
+﻿@using RunChallenge.Models
+@model RunChallenge.Models.Workout
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Last workouts</h2>
+
+@{
+    var workouts = (System.Collections.IEnumerable)ViewData["LastWorkouts"];
+    foreach (Workout workout in workouts)
+	{
+		<h3>Date: @workout.Date / Distance: @workout.Distance KM / Time: @workout.Time</h3>
+	}
+}
+

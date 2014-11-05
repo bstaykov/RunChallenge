@@ -1,5 +1,6 @@
 namespace RunChallenge.Data.Migrations
 {
+    using RunChallenge.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -14,8 +15,36 @@ namespace RunChallenge.Data.Migrations
 
         }
 
-        protected override void Seed(RunChallenge.Data.RunChallengeDbContext context)
+        protected override void Seed(RunChallengeDbContext context)
         {
+            if (!(context.Workouts.Any()))
+            {
+                User user1 = context.Users.FirstOrDefault();
+                Workout workout = new Workout
+                {
+                    UserId = user1.Id,
+                    Distance = 5.0f,
+                    Time = new TimeSpan(0, 22, 33),
+                    Location = "Sofia",
+                    Date = DateTime.Now,
+                    Pace = "5min4sec",
+                    KmHour = "14km",
+                    TimeInSeconds = 1332,
+                    Comment = "It was hard!"
+                };
+                context.Workouts.Add(workout);
+                context.SaveChanges();
+            }
+
+            //if (!(context.Users.Any()))
+            //{
+            //    User user1 = new User
+            //    {
+            //        UserName = "Bai Ivan",
+            //        Email = "abv@abv.bg",
+            //    };
+            //}
+
             //  This method will be called after migrating to the latest version.
 
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
@@ -28,6 +57,8 @@ namespace RunChallenge.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+
         }
     }
 }

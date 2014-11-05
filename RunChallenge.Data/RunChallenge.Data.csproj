@@ -52,7 +52,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IRunChallengeData.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Repository\EFRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="RunChallengeData.cs" />
     <Compile Include="RunChallengeDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace RunChallenge.MVC.Controllers
 {
-    [OutputCache(Duration = 10)]
+    [OutputCache(Duration = 60)] // cached for 60 sec
     public class HomeController : Controller
     {
         IRunChallengeData data;
@@ -22,27 +22,14 @@ namespace RunChallenge.MVC.Controllers
             this.data = data;
         }
 
-        //RunChallengeDbContext dbContext;
-
-        //public HomeController()
-        //{
-        //    this.dbContext = new RunChallengeDbContext();
-        //}
-
         public ActionResult Index()
         {
             var lastWorkouts = this.data.Workouts.All()
                 .Where(d => d.Date < DateTime.Now)
                 .OrderByDescending(w => w.Date)
                 .Take(3);
-            ViewData["LastWorkouts"] = lastWorkouts;
-            
-            //var lastWorkouts = this.dbContext.Workouts
-            //    .OrderByDescending(w => w.Date)
-            //    .Take(3);
-            //ViewData["LastWorkouts"] = lastWorkouts;
 
-            return View();
+            return View(lastWorkouts);
         }
 
         public ActionResult About()
@@ -57,6 +44,15 @@ namespace RunChallenge.MVC.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public ActionResult ReturnJson()
+        {
+            var data = new {
+                name = "Ivan",
+                age = 12
+            };
+            return Json(data, JsonRequestBehavior.AllowGet);
         }
     }
 }

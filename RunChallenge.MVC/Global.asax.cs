@@ -12,6 +12,8 @@ namespace RunChallenge.MVC
     {
         protected void Application_Start()
         {
+            ViewenginesConfiguration.RegisterViewEngines(ViewEngines.Engines);
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

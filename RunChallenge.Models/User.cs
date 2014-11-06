@@ -24,6 +24,7 @@ namespace RunChallenge.Models
         private ICollection<Article> articles;
         private ICollection<Workout> workouts;
         private ICollection<Target> targets;
+        private ICollection<Event> events;
 
         public User()
         {
@@ -31,6 +32,7 @@ namespace RunChallenge.Models
             this.articles = new HashSet<Article>();
             this.workouts = new HashSet<Workout>();
             this.targets = new HashSet<Target>();
+            this.events = new HashSet<Event>();
         }
 
         public virtual ICollection<Comment> Comments 
@@ -78,6 +80,18 @@ namespace RunChallenge.Models
             set
             {
                 this.targets = value;
+            }
+        }
+
+        public virtual ICollection<Event> Events
+        {
+            get
+            {
+                return this.events;
+            }
+            set
+            {
+                this.events = value;
             }
         }
     }

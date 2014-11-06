@@ -1,5 +1,5 @@
 ﻿@using RunChallenge.Models
-@model RunChallenge.Models.Workout
+@model IQueryable<Workout>
 
 @{
     ViewBag.Title = "Home Page";
@@ -36,7 +36,8 @@
     <h2>Last workouts</h2>
     @{
         var workouts = (System.Collections.IEnumerable)ViewData["LastWorkouts"];
-        foreach (Workout workout in workouts)
+        
+        foreach (Workout workout in Model)
         {
             <h3>Date: @workout.Date / Distance: @workout.Distance KM / Time: @workout.Time / Comment: @workout.Comment</h3>
         }

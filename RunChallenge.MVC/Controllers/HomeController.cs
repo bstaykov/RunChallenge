@@ -1,4 +1,5 @@
 ﻿using RunChallenge.Data;
+using RunChallenge.MVC.Models.Workouts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Web.Mvc;
 
 namespace RunChallenge.MVC.Controllers
 {
-    [OutputCache(Duration = 60)] // cached for 60 sec
+    [OutputCache(Duration = 10)] // cached for 60 sec
     public class HomeController : Controller
     {
         IRunChallengeData data;
@@ -27,23 +28,20 @@ namespace RunChallenge.MVC.Controllers
             var lastWorkouts = this.data.Workouts.All()
                 .Where(d => d.Date < DateTime.Now)
                 .OrderByDescending(w => w.Date)
-                .Take(3);
+                .Take(3)
+                .Select(w =>
+                    new WorkoutItem
+                    {
+                        UserName = w.User.UserName,
+                        Distance = w.Distance,
+                        Time = w.Time,
+                        Location = w.Location,
+                        Date = w.Date,
+                        Comment = w.Comment
+                    })
+                    .ToList();
 
             return View(lastWorkouts);
-        }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
         }
 
         public ActionResult ReturnJson()

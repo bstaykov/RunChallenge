@@ -1,5 +1,5 @@
-﻿@using RunChallenge.Models
-@model RunChallenge.Models.Workout
+﻿@using RunChallenge.MVC.Models.Workouts
+@model List<WorkoutItem>
 
 @{
     ViewBag.Title = "Index";
@@ -8,10 +8,31 @@
 <h2>Last workouts</h2>
 
 @{
-    var workouts = (System.Collections.IEnumerable)ViewData["LastWorkouts"];
-    foreach (Workout workout in workouts)
-	{
-		<h3>Date: @workout.Date / Distance: @workout.Distance KM / Time: @workout.Time</h3>
-	}
+    if (TempData["Success"] != null)
+    {
+        <h4 class="alert-success">
+            @TempData["Success"]
+        </h4>
+    }
+    <table>
+        <tr>
+            <th>Distance</th>
+            <th>Time</th>
+            <th>Location</th>
+            <th>Date</th>
+            <th>Comment</th>
+        </tr>
+
+        @foreach (WorkoutItem workout in Model)
+        {
+            <tr>
+                <td>@workout.Distance</td>
+                <td>@workout.Time</td>
+                <td>@workout.Location</td>
+                <td>@workout.Date</td>
+                <td>@workout.Comment</td>
+            </tr>
+        }
+    </table>
 }
 

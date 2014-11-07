@@ -18,9 +18,7 @@ namespace RunChallenge.Models
 
         public int Id { get; set; }
 
-        public Guid UserId { get; set; }
-
-        public virtual User User { get; set; }
+        public string FounderId { get; set; }
 
         public string Title { get; set; }
 
@@ -30,7 +28,8 @@ namespace RunChallenge.Models
 
         public EventScheduleStatus ScheduleStatus { get; set; }
 
-        public ICollection<User> Users {
+        public ICollection<User> Users
+        {
             get
             {
                 return this.users;

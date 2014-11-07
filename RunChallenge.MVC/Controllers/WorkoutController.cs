@@ -32,20 +32,43 @@ namespace RunChallenge.MVC.Controllers
         public ActionResult LastWorkouts()
         {
             var currentUserId = this.User.Identity.GetUserId();
-            var lastWorkouts = this.data.Workouts.All()
-                .Where(u => u.UserId == currentUserId && u.Date < DateTime.Now)
+            //List<WorkoutItem> lastWorkouts = this.data.Workouts.All()
+            //    .Where(u => u.UserId == currentUserId && u.Date < DateTime.Now)
+            //    .Select(w => new{ w.Distance ,w.Time ,w.Location, w.Date , w.Comment})
+            //    .Cast<WorkoutItem>()
+            //    .OrderByDescending(w => w.Date)
+            //    .Take(3)
+            //    .ToList();
+
+
+            var userW = this.data.Workouts.All()
+                .Where(w => w.UserId == currentUserId)
                 .OrderByDescending(w => w.Date)
-                .Take(3);
-            ViewData["LastWorkouts"] = lastWorkouts;
-            return View();
+                .Take(3)
+                .Select(w =>
+                    new WorkoutItem
+                    {
+                        UserName = w.User.UserName,
+                        Distance = w.Distance,
+                        Time = w.Time,
+                        Location = w.Location,
+                        Date = w.Date,
+                        Comment = w.Comment
+                    })
+                    .ToList();
+
+
+            return View(userW);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult InsertWorkout()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult InsertWorkout(WorkoutInput workout)
@@ -76,6 +99,8 @@ namespace RunChallenge.MVC.Controllers
 
                 this.data.Workouts.Add(newWorkout);
                 this.data.SaveChanges();
+
+                TempData["Success"] = "Workout successfully added...";
 
                 return RedirectToAction("LastWorkouts");
             }

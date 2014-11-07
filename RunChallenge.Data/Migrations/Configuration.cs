@@ -17,7 +17,17 @@ namespace RunChallenge.Data.Migrations
 
         protected override void Seed(RunChallengeDbContext context)
         {
-            if (!(context.Workouts.Any()))
+            //if (!(context.Users.Any()))
+            //{
+            //    User user1 = new User
+            //    {
+            //        UserName = "Bai Ivan",
+            //        Email = "abv@abv.bg",
+            //        PasswordHash = ???
+            //    };
+            //}
+
+            if (context.Users.Any() && !(context.Workouts.Any()))
             {
                 User user1 = context.Users.FirstOrDefault();
                 Workout workout = new Workout
@@ -35,15 +45,6 @@ namespace RunChallenge.Data.Migrations
                 context.Workouts.Add(workout);
                 context.SaveChanges();
             }
-
-            //if (!(context.Users.Any()))
-            //{
-            //    User user1 = new User
-            //    {
-            //        UserName = "Bai Ivan",
-            //        Email = "abv@abv.bg",
-            //    };
-            //}
 
             //  This method will be called after migrating to the latest version.
 

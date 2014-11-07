@@ -29,7 +29,7 @@
         @Html.LabelFor(m => m.Hours)
     </div>
     <div>
-        @Html.DropDownListFor(m => m.Hours, Enumerable.Range(0, 40).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 0) }))
+        @Html.DropDownListFor(m => m.Hours, Enumerable.Range(0, 24).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 0) }))
         <label class="alert-warning">
             @Html.ValidationMessageFor(m => m.Hours)
         </label>

@@ -1,8 +1,8 @@
 ﻿@using RunChallenge.MVC.Models.Workouts
-@model List<WorkoutItem>
+@model List<WorkoutItemModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Last Workouts";
 }
 
 <h2>Last workouts</h2>
@@ -23,7 +23,7 @@
             <th>Comment</th>
         </tr>
 
-        @foreach (WorkoutItem workout in Model)
+        @foreach (WorkoutItemModel workout in Model)
         {
             <tr>
                 <td>@workout.Distance</td>

@@ -1,5 +1,5 @@
 ﻿@using RunChallenge.MVC.Models.Workouts
-@model List<WorkoutItem>
+@model List<WorkoutItemModel>
 
 @{
     ViewBag.Title = "Home Page";
@@ -17,7 +17,7 @@
                 <th>Comment</th>
             </tr>
 
-            @foreach (WorkoutItem workout in Model)
+            @foreach (WorkoutItemModel workout in Model)
             {
                 <tr>
                     <td>@workout.UserName</td>

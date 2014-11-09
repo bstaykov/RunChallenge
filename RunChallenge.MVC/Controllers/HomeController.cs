@@ -30,7 +30,7 @@ namespace RunChallenge.MVC.Controllers
                 .OrderByDescending(w => w.Date)
                 .Take(3)
                 .Select(w =>
-                    new WorkoutItem
+                    new WorkoutItemModel
                     {
                         UserName = w.User.UserName,
                         Distance = w.Distance,

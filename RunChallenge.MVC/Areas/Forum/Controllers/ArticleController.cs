@@ -1,0 +1,102 @@
+﻿namespace RunChallenge.MVC.Areas.Forum.Controllers
+{
+    using RunChallenge.Data;
+    using RunChallenge.Models;
+    using RunChallenge.MVC.Areas.Forum.Models;
+    using RunChallenge.MVC.Controllers;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using RunChallenge.MVC.Areas.Forum.Models;
+
+    public class ArticleController : BaseController
+    {
+        IRunChallengeData data;
+
+        public ArticleController()
+            :this(new RunChallengeData(new RunChallengeDbContext()))
+        {
+        }
+
+        public ArticleController(IRunChallengeData data)
+        {
+            this.data = data;
+        }
+
+        [HttpGet]
+        [OutputCache(Duration = 60)]
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult InsertArticle()
+        {
+            ArticleInputModel defaultArticleValues = new ArticleInputModel()
+            {
+                Title = "Title...",
+                Content = "Content...",
+                Category = ArticleCategory.ShortStory
+            };
+            return View(defaultArticleValues);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult InsertArticle(ArticleInputModel article)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = this.User.Identity.GetUserId();
+
+                Article newArticle = new Article()
+                {
+                    UserId = userId,
+                    Title = article.Title,
+                    Content = article.Content,
+                    DateTimePosted = DateTime.Now,
+                    Status = ArticleStatus.Visible
+                };
+
+                this.data.Articles.Add(newArticle);
+                this.data.SaveChanges();
+
+                TempData["Success"] = "Article successfully added...";
+
+                return RedirectToAction("ListOfArticles");
+            }
+            return View(article);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [OutputCache(Duration = 60)]
+        public ActionResult ListOfArticles()
+        {
+            // TODO get articles from db
+
+            var lastArticles = this.data.Articles.All()
+                .Where(s => s.Status == ArticleStatus.Visible)
+                .OrderByDescending(d => d.DateTimePosted)
+                .Take(3)
+                .Select(a =>
+                    new ArticleItemModel
+                    {
+                        UserName = a.User.UserName,
+                        Title = a.Title,
+                        Content = a.Content,
+                        DateTimePosted = a.DateTimePosted,
+                        Category = ((ArticleCategory)a.Category).ToString()
+                    })
+                    .ToList();
+
+            return View(lastArticles);
+        }
+    }
+}

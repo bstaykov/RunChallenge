@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class WorkoutItem
+    public class WorkoutItemModel
     {
         public string UserName { get; set; }
 

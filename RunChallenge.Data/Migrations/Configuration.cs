@@ -17,6 +17,7 @@ namespace RunChallenge.Data.Migrations
 
         protected override void Seed(RunChallengeDbContext context)
         {
+
             //if (!(context.Users.Any()))
             //{
             //    User user1 = new User

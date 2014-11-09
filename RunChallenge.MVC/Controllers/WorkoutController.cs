@@ -1,19 +1,18 @@
-﻿using RunChallenge.Data;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using RunChallenge.MVC.Models.Workouts;
-using System.Text;
-using RunChallenge.Models;
-using System.Globalization;
-//using Microsoft.AspNet.Identity.IdentityExtensions;
-
-
-namespace RunChallenge.MVC.Controllers
+﻿namespace RunChallenge.MVC.Controllers
 {
+    using RunChallenge.Data;
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using Microsoft.AspNet.Identity;
+    using RunChallenge.MVC.Models.Workouts;
+    using System.Text;
+    using RunChallenge.Models;
+    using System.Globalization;
+    //using Microsoft.AspNet.Identity.IdentityExtensions;
+
     public class WorkoutController : BaseController
     {
         IRunChallengeData data;
@@ -28,7 +27,7 @@ namespace RunChallenge.MVC.Controllers
             this.data = data;
         }
 
-        // GET: Workout
+        [HttpGet]
         public ActionResult LastWorkouts()
         {
             var currentUserId = this.User.Identity.GetUserId();
@@ -46,7 +45,7 @@ namespace RunChallenge.MVC.Controllers
                 .OrderByDescending(w => w.Date)
                 .Take(3)
                 .Select(w =>
-                    new WorkoutItem
+                    new WorkoutItemModel
                     {
                         UserName = w.User.UserName,
                         Distance = w.Distance,
@@ -71,7 +70,7 @@ namespace RunChallenge.MVC.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult InsertWorkout(WorkoutInput workout)
+        public ActionResult InsertWorkout(WorkoutInputModel workout)
         {
             if (ModelState.IsValid)
             {

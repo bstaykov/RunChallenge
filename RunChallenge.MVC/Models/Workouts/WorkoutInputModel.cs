@@ -3,7 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System;
 
-    public class WorkoutInput
+    public class WorkoutInputModel
     {
         [Required(ErrorMessage = "Km is required!")]
         [RegularExpression(@"^([0-9]|[1-9][0-9]|[1-9][0-9][0-9])$", ErrorMessage = "Invalid Km!")]

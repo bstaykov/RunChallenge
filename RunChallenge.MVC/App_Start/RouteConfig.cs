@@ -11,15 +11,16 @@ namespace RunChallenge.MVC
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.Clear();
+            //
+            //routes.Clear();
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute(
-                name: "StaticPages",
-                url: "{action}",
-                defaults: new { controller = "Home" }
-            );
+            //routes.MapRoute(
+            //    name: "StaticPages",
+            //    url: "{action}",
+            //    defaults: new { controller = "Home" }
+            //);
 
             routes.MapRoute(
                 name: "Default",

@@ -8,17 +8,19 @@ namespace RunChallenge.Models
 {
     public class Event
     {
-
-        private ICollection<User> users;
+        // may need to delete
+        private ICollection<EventUser> eventusers;
 
         public Event()
         {
-            this.users = new HashSet<User>();
+            this.eventusers = new HashSet<EventUser>();
         }
 
         public int Id { get; set; }
 
-        public string FounderId { get; set; }
+        public string UserId { get; set; }
+
+        public User User { get; set; }
 
         public string Title { get; set; }
 
@@ -28,16 +30,17 @@ namespace RunChallenge.Models
 
         public EventScheduleStatus ScheduleStatus { get; set; }
 
-        public ICollection<User> Users
+        public ICollection<EventUser> EventUsers
         {
             get
             {
-                return this.users;
+                return this.eventusers;
             }
             set
             {
-                this.users = value;
+                this.eventusers = value;
             }
         }
+
     }
 }

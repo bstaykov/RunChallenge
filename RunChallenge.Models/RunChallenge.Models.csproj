@@ -53,12 +53,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Article.cs" />
+    <Compile Include="ArticleCategory.cs" />
     <Compile Include="ArticleStatus.cs" />
     <Compile Include="Comment.cs" />
     <Compile Include="CommentLike.cs" />
     <Compile Include="CommentStatus.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="EventScheduleStatus.cs" />
+    <Compile Include="EventUser.cs" />
     <Compile Include="EventVisibilityStatus.cs" />
     <Compile Include="ArticleLike.cs" />
     <Compile Include="Target.cs" />

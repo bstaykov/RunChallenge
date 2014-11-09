@@ -1,0 +1,16 @@
+﻿@using RunChallenge.MVC.Areas.Forum.Models
+@model List<ArticleItemModel>
+
+@{
+    ViewBag.Title = "Articles";
+}
+<br /><br />
+@foreach (ArticleItemModel article in Model)
+{
+    <div class="jumbotron">
+        <h2>@article.Title</h2>
+        <h3>By <strong><i>@article.UserName</i></strong> Category: <strong>@article.Category</strong> @article.DateTimePosted </h3>
+        <p>@article.Content</p>
+        <br /><br />
+    </div>
+}

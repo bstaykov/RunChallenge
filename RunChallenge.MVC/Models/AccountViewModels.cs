@@ -65,6 +65,11 @@ namespace RunChallenge.MVC.Models
     public class RegisterViewModel
     {
         [Required]
+        [StringLength(20, ErrorMessage = "The {0} must be at least {2} characters long and maximum {1}.", MinimumLength = 4)]
+        [Display(Name = "UserName")]
+        public string UserName { get; set; }
+        
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

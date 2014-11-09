@@ -33,7 +33,9 @@
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        <div id="content" style="display:none;">      
+            @RenderBody()
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
@@ -43,5 +45,17 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        //$("#content").hide(1000);
+        //$("#content").show(3000);
+
+        //$("#content").fadeOut(1000);
+        $("#content").fadeIn(2000);
+        
+        //$("#content").slideUp(2000);
+        //$("#content").slideDown(2000);
+
+        
+    </script>
 </body>
 </html>

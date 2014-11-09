@@ -1,0 +1,24 @@
+﻿@using RunChallenge.MVC.Areas.Forum.Models
+@model IEnumerable<ArticleItemModel>
+
+@foreach (ArticleItemModel article in Model)
+{
+    <div>
+        <strong>
+            @article.Title
+        </strong>
+    </div>
+    @Ajax.ActionLink("Read article", "ContentById", "Article",
+        new { id = @article.Id },       
+        new AjaxOptions
+        {
+            InsertionMode = InsertionMode.Replace,
+            UpdateTargetId = "article-content",
+            HttpMethod = "POST"
+        })
+    <br />
+}
+
+<div id="article-content"></div>
+
+

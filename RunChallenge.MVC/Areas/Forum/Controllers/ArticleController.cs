@@ -8,10 +8,12 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Web;
-    using System.Web.Mvc;
     using Microsoft.AspNet.Identity;
-    using RunChallenge.MVC.Areas.Forum.Models;
+    using System.Net;
+    using System.Web.Mvc;
+    using RunChallenge.MVC.Filters;
 
+    //[AllowCrossDomain]
     public class ArticleController : BaseController
     {
         IRunChallengeData data;
@@ -27,10 +29,14 @@
         }
 
         [HttpGet]
-        [OutputCache(Duration = 60)]
+        //[OutputCache(Duration = 60)]
         public ActionResult Index()
         {
-            return View();
+            var data = this.data.Articles.All()
+                .AsQueryable()
+                .Select(ArticleItemModel.FromArticle)
+                .ToList();
+            return View(data);
         }
 
         [Authorize]
@@ -97,6 +103,40 @@
                     .ToList();
 
             return View(lastArticles);
+        }
+
+        //[HttpPost]
+        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public ActionResult Search(string query)
+        {
+            var result = this.data.Articles
+                .All()
+                .AsQueryable()
+                .Where(article => article.Title.ToLower().Contains(query.ToLower()))
+                .Select(ArticleItemModel.FromArticle)
+                .ToList();
+
+            return this.PartialView("_ArticleResult", result);
+        }
+
+        //[HttpPost]
+        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
+        public ActionResult ContentById(int id)
+        {
+            if (!Request.IsAjaxRequest())
+            {
+                Response.StatusCode = (int)HttpStatusCode.Forbidden;
+                return this.Content("This action can be invoke only by AJAX call");
+            }
+
+            var article = this.data.Articles.All().FirstOrDefault(x => x.Id == id);
+            if (article == null)
+            {
+                Response.StatusCode = (int)HttpStatusCode.NotFound;
+                return this.Content("Article not found");
+            }
+
+            return this.Content(article.Content);
         }
     }
 }

@@ -11,6 +11,8 @@
     using System.Text;
     using RunChallenge.Models;
     using System.Globalization;
+    using RunChallenge.MVC.Areas.Forum.Models;
+    using System.Net;
     //using Microsoft.AspNet.Identity.IdentityExtensions;
 
     public class WorkoutController : BaseController

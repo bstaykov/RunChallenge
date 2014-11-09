@@ -55,7 +55,7 @@
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult InsertArticle(ArticleInputModel article)
+        public ActionResult InsertArticle(ArticleInputModel article, bool check)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +75,7 @@
 
                 TempData["Success"] = "Article successfully added...";
 
-                return RedirectToAction("ListOfArticles");
+                return RedirectToAction("InsertArticle");
             }
             return View(article);
         }

@@ -85,7 +85,6 @@
                 int timeInSeconds = TimeInSeconds(workout.Hours, workout.Minutes, workout.Seconds);
                 string pace = CalcPace(timeInSeconds, distance);
                 string kmHour = KmPerHour(timeInSeconds, distance);
-
                 Workout newWorkout = new Workout() { 
                     UserId = this.User.Identity.GetUserId(),
                     Distance = distance,

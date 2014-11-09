@@ -8,7 +8,7 @@
 @using (Html.BeginForm("InsertArticle", "Article", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
+
     <div>
         @Html.LabelFor(m => m.Title)
     </div>
@@ -39,60 +39,69 @@
         </label>
     </div>
     @*<div>
-        @Html.LabelFor(m => m.Meters)
-    </div>
-    <div>
-        @Html.TextBoxFor(m => m.Meters, new { Value = 0 })
-        <label class="alert-warning">
-            @Html.ValidationMessageFor(m => m.Meters)
-        </label>
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Hours)
-    </div>
-    <div>
-        @Html.DropDownListFor(m => m.Hours, Enumerable.Range(0, 24).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 0) }))
-        <label class="alert-warning">
-            @Html.ValidationMessageFor(m => m.Hours)
-        </label>
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Minutes)
-    </div>
-    <div>
-        @Html.DropDownListFor(m => m.Minutes, Enumerable.Range(0, 60).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 30) }))
-        <label class="alert-warning">
-            @Html.ValidationMessageFor(m => m.Minutes)
-        </label>
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Seconds)
-    </div>
-    <div>
-        @Html.DropDownListFor(m => m.Seconds, Enumerable.Range(0, 60).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 0) }))
-        <label class="alert-warning">
-            @Html.ValidationMessageFor(m => m.Seconds)
-        </label>
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Location)
-    </div>
-    <div>
-        @Html.TextBoxFor(m => m.Location, new { Value = "Plovdiv" })
-        <label class="alert-warning">
-            @Html.ValidationMessageFor(m => m.Location)
-        </label>
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Comment)
-    </div>
-    <div>
-        @Html.TextBoxFor(m => m.Comment, new { Value = "It's cold outside!" })
-        <label class="alert-warning">
-            @Html.ValidationMessageFor(m => m.Comment)
-        </label>
-    </div>*@
+            @Html.LabelFor(m => m.Meters)
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Meters, new { Value = 0 })
+            <label class="alert-warning">
+                @Html.ValidationMessageFor(m => m.Meters)
+            </label>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Hours)
+        </div>
+        <div>
+            @Html.DropDownListFor(m => m.Hours, Enumerable.Range(0, 24).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 0) }))
+            <label class="alert-warning">
+                @Html.ValidationMessageFor(m => m.Hours)
+            </label>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Minutes)
+        </div>
+        <div>
+            @Html.DropDownListFor(m => m.Minutes, Enumerable.Range(0, 60).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 30) }))
+            <label class="alert-warning">
+                @Html.ValidationMessageFor(m => m.Minutes)
+            </label>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Seconds)
+        </div>
+        <div>
+            @Html.DropDownListFor(m => m.Seconds, Enumerable.Range(0, 60).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 0) }))
+            <label class="alert-warning">
+                @Html.ValidationMessageFor(m => m.Seconds)
+            </label>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Location)
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Location, new { Value = "Plovdiv" })
+            <label class="alert-warning">
+                @Html.ValidationMessageFor(m => m.Location)
+            </label>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Comment)
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Comment, new { Value = "It's cold outside!" })
+            <label class="alert-warning">
+                @Html.ValidationMessageFor(m => m.Comment)
+            </label>
+        </div>*@
+    
+    @*<input type="checkbox" name="check" checked="checked" value="true" />
+    <input type="hidden" name="check" value="false" />*@
     
     @Html.Submit("Save")
+    if (@TempData["Success"] != null)
+    {
+        <span class="alert-success custom-message">
+            @TempData["Success"]
+        </span>
+    }
 }
 

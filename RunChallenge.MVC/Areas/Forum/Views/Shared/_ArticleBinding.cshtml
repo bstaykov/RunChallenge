@@ -1,0 +1,63 @@
+﻿@using RunChallenge.MVC.Areas.Forum.Models
+@model ArticleInputModel
+
+@using (Html.BeginForm("InsertArticle", "Article", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    // excludes properties errors
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(m => m.Title)
+        @Html.EditorFor(m => m.Title)
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Title)
+        </label>
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Content)
+        @Html.TextAreaFor(m => m.Content)
+        @*@Html.EditorFor(m => m.Content)*@
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Content)
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Category)
+
+        @*@Html.DropDownListFor(model => model.Category, Enum.GetNames(typeof(RunChallenge.Models.ArticleCategory)).Select(e => new SelectListItem { Text = e }))*@
+
+        @Html.EnumDropDownListFor(m => m.Category)
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Category)
+        </label>
+    </div>
+    <div>
+        @Html.Submit("Save")
+        @if (@TempData["Success"] != null)
+        {
+        <span class="alert-success custom-message">
+            @TempData["Success"]
+        </span>
+        }
+    </div>
+}
+
+@*<div id="parent">
+    <div id="1">
+        <input type="text" name="name" value="Name" />
+    </div>
+</div>
+<button onclick="cloneEl()">Add Name</button>
+
+<script>
+    function cloneEl() {
+        alert("clone...");
+        $("#1").clone().attr("id", 2).appendTo("#parent");
+    }
+</script>*@
+
+
+

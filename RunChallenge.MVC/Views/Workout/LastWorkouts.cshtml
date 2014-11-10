@@ -5,15 +5,17 @@
     ViewBag.Title = "Last Workouts";
 }
 
-<h2>Last workouts</h2>
+<h2>
+    Last workouts
+    @if (TempData["Success"] != null)
+    {
+        <span class="alert-success custom-message-slide">
+            @TempData["Success"]
+        </span>
+    }
+</h2>
 
 @{
-    if (TempData["Success"] != null)
-    {
-        <h4 class="alert-success">
-            @TempData["Success"]
-        </h4>
-    }
     <table>
         <tr>
             <th>Distance</th>

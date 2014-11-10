@@ -43,19 +43,13 @@
         [HttpGet]
         public ActionResult InsertArticle()
         {
-            ArticleInputModel defaultArticleValues = new ArticleInputModel()
-            {
-                Title = "Title...",
-                Content = "Content...",
-                Category = ArticleCategory.ShortStory
-            };
-            return View(defaultArticleValues);
+            return View(new ArticleInputModel());
         }
 
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult InsertArticle(ArticleInputModel article, bool check)
+        public ActionResult InsertArticle(ArticleInputModel article)
         {
             if (ModelState.IsValid)
             {

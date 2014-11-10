@@ -10,6 +10,7 @@ namespace RunChallenge.MVC.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
+    using RunChallenge.Data;
 
     public static class NinjectWebCommon 
     {
@@ -61,6 +62,8 @@ namespace RunChallenge.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+            //kernel.Bind<IRunChallengeData>().To<RunChallengeData>();
+            
         }        
     }
 }

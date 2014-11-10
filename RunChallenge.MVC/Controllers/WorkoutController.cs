@@ -66,7 +66,7 @@
         [HttpGet]
         public ActionResult InsertWorkout()
         {
-            return View();
+            return View(new WorkoutInputModel());
         }
 
         [Authorize]
@@ -74,12 +74,29 @@
         [ValidateAntiForgeryToken]
         public ActionResult InsertWorkout(WorkoutInputModel workout)
         {
+            // custom error message
+            if (workout.Day == 10)
+            {
+                ModelState.AddModelError(string.Empty, "TODAY CUSTOM ERROR!");
+            }
+
+            DateTime date;
+            if (!(DateTime.TryParse(workout.Month + "/" + workout.Day + "/" + workout.Year, out date)))
+            {
+                TempData["ErrorDateTime"] = "Invalid Date";
+                return View(workout);
+            } 
+            else if(date > DateTime.Now){
+                TempData["ErrorDateTime"] = "Future date!";
+                return View(workout);
+            }
+            else if (DateTime.Now.Year == workout.Year && DateTime.Now.Month == workout.Month && DateTime.Now.Day == workout.Day)
+            {
+                date = DateTime.Now;
+            }
+
             if (ModelState.IsValid)
             {
-                //var date = workout.Year + "/" + workout.Month + "/" + workout.Day;
-                //DateTime dateValue;
-                //DateTime.TryParse(date, out dateValue);
-
                 float distance = Distance(workout.Km, workout.Meters);
                 TimeSpan time = new TimeSpan(workout.Hours, workout.Minutes, workout.Seconds);
                 int timeInSeconds = TimeInSeconds(workout.Hours, workout.Minutes, workout.Seconds);
@@ -160,5 +177,6 @@
                     .Format("{0:F2}", CultureInfo.InvariantCulture, (distance * 3600) / timeInSeconds);
             return kmPerH;
         }
+
     }
 }

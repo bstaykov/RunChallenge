@@ -1,0 +1,46 @@
+﻿@model DateTime
+
+@{
+    var days = new List<SelectListItem>();
+    for (int i = 1; i <= 31; i++)
+    {
+        days.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+    }
+    
+    var months = new List<SelectListItem>();
+    for (int i = 1; i <= 12; i++)
+    {
+        months.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+    }
+
+    var startYear = ViewBag.StartYear;
+    var endYear = ViewBag.EndYear;
+
+    if (startYear == null)
+    {
+        startYear = DateTime.Now.Year - 1;
+    }
+
+    if (endYear == null)
+    {
+        endYear = DateTime.Now.Year;
+    }
+
+    var years = new List<SelectListItem>();
+    for (int i = startYear; i <= endYear; i++)
+    {
+        years.Add(new SelectListItem { Text = i.ToString(), Value = i.ToString() });
+    }
+}
+<div>   
+    Day @Html.DropDownList("Day", days)
+</div>
+<div>
+    Month @Html.DropDownList("Month", months)
+</div>
+<div>
+    Year @Html.DropDownList("Year", years)
+</div>
+
+
+

@@ -1,11 +1,14 @@
-﻿@using RunChallenge.MVC.Areas.Forum.Models
-@model ArticleInputModel
+﻿@*@using RunChallenge.MVC.Areas.Forum.Models
+@model ArticleInputModel*@
 
 @{
     ViewBag.Title = "Insert Article";
 }
+<div class="jumbotron">   
+    @Html.Partial("_ArticleBinding")
+</div>
 
-@using (Html.BeginForm("InsertArticle", "Article", FormMethod.Post))
+@*@using (Html.BeginForm("InsertArticle", "Article", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -33,12 +36,12 @@
     </div>
     <div>
         @Html.DropDownListFor(model => model.Category, Enum.GetNames(typeof(RunChallenge.Models.ArticleCategory)).Select(e => new SelectListItem { Text = e }))
-        @*@Html.DropDownListFor(m => m.Category, Enumerable.Range(0, Model.Category.Count).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 1) }))*@
+        @Html.DropDownListFor(m => m.Category, Enumerable.Range(0, Model.Category.Count).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 1) }))
         <label class="alert-warning">
             @Html.ValidationMessageFor(m => m.Category)
         </label>
     </div>
-    @*<div>
+    <div>
             @Html.LabelFor(m => m.Meters)
         </div>
         <div>
@@ -91,10 +94,10 @@
             <label class="alert-warning">
                 @Html.ValidationMessageFor(m => m.Comment)
             </label>
-        </div>*@
+        </div>
     
-    @*<input type="checkbox" name="check" checked="checked" value="true" />
-    <input type="hidden" name="check" value="false" />*@
+    <input type="checkbox" name="check" checked="checked" value="true" />
+    <input type="hidden" name="check" value="false" />
     
     @Html.Submit("Save")
     if (@TempData["Success"] != null)
@@ -103,5 +106,6 @@
             @TempData["Success"]
         </span>
     }
-}
+}*@
+
 

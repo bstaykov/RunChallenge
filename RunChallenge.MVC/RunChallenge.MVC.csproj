@@ -207,6 +207,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="App_Start\ViewenginesConfiguration.cs" />
+    <Compile Include="ValidationAttributes\CustomLengthAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -226,6 +227,8 @@
     <Content Include="Areas\Forum\Views\Article\InsertArticle.cshtml" />
     <Content Include="Areas\Forum\Views\Article\ListOfArticles.cshtml" />
     <Content Include="Areas\Forum\Views\Article\_ArticleResult.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_ArticleBinding.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
@@ -281,9 +284,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Forum\Views\Shared\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -12,20 +12,22 @@ namespace RunChallenge.MVC.Controllers
     [Log]
     public abstract class BaseController : Controller
     {
-        //protected RunChallengeData Data { get; set; }
 
-        //protected User CurrentUser { get; set; }  
 
-        [NonAction]
-        public void SystemSettings()
-        {
+        ////protected RunChallengeData Data { get; set; }
 
-        }
+        ////protected User CurrentUser { get; set; }  
 
-        [ChildActionOnly] // action, can be called only by other actions
-        public void GetSome()
-        {
+        //[NonAction]
+        //public void SystemSettings()
+        //{
 
-        }
+        //}
+
+        //[ChildActionOnly] // action, can be called only by other actions
+        //public void GetSome()
+        //{
+
+        //}
     }
 }

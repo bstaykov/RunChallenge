@@ -1,0 +1,46 @@
+﻿@using RunChallenge.MVC.Models.Workouts
+@model List<WorkoutItemModel>
+
+<div class="jumbotron">
+    @if (Model.Count != 0)
+    {
+        <h2>Last workouts</h2>
+        <table class="table table-hover table-bordered">
+            <tr>
+                <th>Runner</th>
+                <th>Distance</th>
+                <th>Time</th>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Comment</th>
+            </tr>
+
+            @foreach (WorkoutItemModel workout in Model)
+            {
+                <tr>
+                    <td>@workout.UserName</td>
+                    <td>@workout.Distance Km</td>
+                    <td>@workout.Time</td>
+                    <td>@workout.Location</td>
+                    @if ((DateTime.Now - workout.Date).Days > 0)
+                    {
+                        @((DateTime.Now - workout.Date).Days) @:d ago
+                    }
+                    else if ((DateTime.Now - workout.Date).Hours > 0)
+                    {
+                        <td>@((DateTime.Now - workout.Date).Hours)h ago</td>
+                    }
+                    else
+                    {
+                        <td>@((DateTime.Now - workout.Date).Minutes)min ago</td>
+                    }
+                    <td>@workout.Comment</td>
+                </tr>
+            }
+        </table>
+    }
+    else
+    {
+        <h2>In the begginig God created ...</h2>
+    }
+</div>

@@ -1,0 +1,6 @@
+﻿@using (Html.BeginForm("DelleteAllWorkouts", "Workout", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    @Html.Submit("Dellete All Workouts")
+}

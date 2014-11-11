@@ -1,0 +1,11 @@
+﻿@model DateTime
+
+@{
+    ViewBag.Title = "Navigation";
+}
+
+<h2>Hello Admin</h2>
+
+@(Html.Kendo().Calendar().Name("calendar"))
+
+@(Html.Kendo().DateTimePickerFor(m => m).Name("date-picker"))

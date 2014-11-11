@@ -1,0 +1,135 @@
+﻿@model RunChallenge.MVC.Models.Workouts.WorkoutInputModel
+
+@using (Html.BeginForm("InsertWorkout", "Workout", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    @Html.AntiForgeryToken()
+
+    // excludes properties errors
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(m => m.Km)
+        @Html.TextBoxFor(m => m.Km)
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Km)
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Meters)
+        @Html.TextBoxFor(m => m.Meters)
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Meters)
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Hours)
+        @Html.DropDownListFor(m => m.Hours, Enumerable.Range(0, 24).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 0) }))
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Hours)
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Minutes)
+        @Html.DropDownListFor(m => m.Minutes, Enumerable.Range(0, 60).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 30) }))
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Minutes)
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Seconds)
+        @Html.DropDownListFor(m => m.Seconds, Enumerable.Range(0, 60).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString(), Selected = (x == 0) }))
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Seconds)
+        </label>
+    </div>
+
+    @*<div>
+            @Html.EditorFor(m => m.Date , new { StartYear = DateTime.Now.Year - 2, EndYear = DateTime.Now.Year })
+            <label class="alert-warning">
+                @Html.ValidationMessageFor(m => m.Date)
+                @if (TempData["DateTime"] != null)
+                {
+                    @TempData["DateTime"]
+                }
+            </label>
+        </div>*@
+
+    var date = DateTime.Now;
+    var year = date.Year;
+    var month = date.Month;
+    var day = date.Day;
+
+    <div>
+        @Html.LabelFor(m => m.Year)
+        @Html.DropDownListFor(m => m.Year, Enumerable.Range(year - 1, 2).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }))
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Year)
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Month)
+        @Html.DropDownListFor(m => m.Month, Enumerable.Range(1, 12).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }))
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Month)
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Day)
+        @Html.DropDownListFor(m => m.Day, Enumerable.Range(1, 31).Select(x => new SelectListItem { Text = x.ToString(), Value = x.ToString() }))
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Day)
+        </label>
+        <label class="alert-warning">
+            @if (TempData["ErrorDateTime"] != null)
+            {
+                @TempData["ErrorDateTime"]
+            }
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Location)
+        @Html.TextBoxFor(m => m.Location)
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Location)
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Comment)
+        @Html.TextBoxFor(m => m.Comment)
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Comment)
+        </label>
+    </div>
+    @Html.Submit("Save")
+}
+
+@* CLIENT VALIDATION *@
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<hr />
+
+@*@using (Html.BeginForm("InsertWorkout", "Workout", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+
+        <div>
+            @Html.LabelFor(m => m.Name)
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Name, new { type = "text", pattern = ".{4,}", required = "required", title = "4 characters minimum", maxlength = 5 })
+            <label class="alert-warning">
+                @Html.ValidationMessageFor(m => m.Name)
+            </label>
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.Age)
+        </div>
+        <div>
+            @Html.TextBoxFor(m => m.Age)
+        </div>
+        <input type="submit" value="Submit"/>
+        @Html.Submit()
+    }*@

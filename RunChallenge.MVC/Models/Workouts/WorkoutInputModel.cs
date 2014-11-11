@@ -73,6 +73,16 @@
             {
                 yield return new ValidationResult("Time cant be 0h 0min 0sec!", new[] { "Hours", "Minutes", "Seconds" });
             }
+
+            DateTime date;
+            if (!(DateTime.TryParse(Month + "/" + Day + "/" + Year, out date)))
+            {
+                yield return new ValidationResult("Invalid date!", new[] { "Day", "Month", "Year" });
+            }
+            else if (date > DateTime.Now)
+            {
+                yield return new ValidationResult("Future date!", new[] { "Day", "Month", "Year" });
+            }
         }
     }
 }

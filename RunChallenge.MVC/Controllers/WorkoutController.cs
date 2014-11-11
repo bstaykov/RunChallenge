@@ -13,6 +13,7 @@
     using System.Globalization;
     using RunChallenge.MVC.Areas.Forum.Models;
     using System.Net;
+    using System.Web.UI;
     //using Microsoft.AspNet.Identity.IdentityExtensions;
 
     public class WorkoutController : BaseController
@@ -29,6 +30,7 @@
             this.data = data;
         }
 
+        [OutputCache(Duration=10, Location=OutputCacheLocation.Any)]
         [HttpGet]
         public ActionResult LastWorkouts()
         {
@@ -75,22 +77,16 @@
         public ActionResult InsertWorkout(WorkoutInputModel workout)
         {
             // custom error message
-            if (workout.Day == 10)
+            if (workout.Day == (DateTime.Now.Day + 1))
             {
-                ModelState.AddModelError(string.Empty, "TODAY CUSTOM ERROR!");
+                ModelState.AddModelError(string.Empty, "Tommorow CUSTOM ERROR!");
             }
 
             DateTime date;
-            if (!(DateTime.TryParse(workout.Month + "/" + workout.Day + "/" + workout.Year, out date)))
-            {
-                TempData["ErrorDateTime"] = "Invalid Date";
-                return View(workout);
-            } 
-            else if(date > DateTime.Now){
-                TempData["ErrorDateTime"] = "Future date!";
-                return View(workout);
-            }
-            else if (DateTime.Now.Year == workout.Year && DateTime.Now.Month == workout.Month && DateTime.Now.Day == workout.Day)
+            string dataString = workout.Month + "/" + workout.Day + "/" + workout.Year;
+            string format = "M/d/yyyy";
+            if (DateTime.TryParseExact(dataString, format, new CultureInfo("en-US"), DateTimeStyles.None, out date) 
+                && (DateTime.Now.Year == workout.Year && DateTime.Now.Month == workout.Month && DateTime.Now.Day == workout.Day))
             {
                 date = DateTime.Now;
             }
@@ -107,7 +103,7 @@
                     Distance = distance,
                     Time = time,
                     Location = workout.Location,
-                    Date = DateTime.Now,
+                    Date = date,
                     Pace = pace,
                     KmHour = kmHour,
                     TimeInSeconds = timeInSeconds,
@@ -122,6 +118,26 @@
                 return RedirectToAction("LastWorkouts");
             }
             return View(workout);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize]
+        public ActionResult DelleteAllWorkouts()
+        {
+            var workouts = this.data.Workouts.All();
+            if (workouts == null)
+            {
+                return RedirectToAction("LastWorkouts");
+            }
+            foreach (var item in workouts)
+            {
+                var id = item.Id;
+                this.data.Workouts.Delete(id);
+
+            }
+            this.data.SaveChanges();
+            return RedirectToAction("LastWorkouts");
         }
 
         [NonAction]

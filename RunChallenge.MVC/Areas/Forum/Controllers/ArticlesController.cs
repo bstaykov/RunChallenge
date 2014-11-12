@@ -12,7 +12,6 @@
     using System.Net;
     using System.Web.Mvc;
     using RunChallenge.MVC.Filters;
-    using System.Web.Http.Cors;
 
     //[AllowCrossDomain]
     public class ArticlesController : BaseController
@@ -93,7 +92,6 @@
                         Category = ((ArticleCategory)a.Category).ToString()
                     })
                     .ToList();
-
             return View(lastArticles);
         }
 

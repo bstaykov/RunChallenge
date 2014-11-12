@@ -26,8 +26,7 @@ namespace RunChallenge.MVC
                 "~/Content/kendo/kendo.silver.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/custom").Include(
-                "~/Content/site.css",
-                "~/Content/bootstrap-responsive.css"));
+                "~/Content/site.css"));
         }
 
         private static void RegisterScriptBundles(BundleCollection bundles)
@@ -37,20 +36,24 @@ namespace RunChallenge.MVC
                 "~/Scripts/kendo/kendo.aspnetmvc.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                "~/Scripts/jquery-{version}.js",
-                "~/Scripts/kendo/jquery.min.js", 
-                "~/Scripts/jquery.unobtrusive-ajax.js"));
+                "~/Scripts/kendo/jquery.min.js"));
             
-            // NEVER USED
-            //bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
-            //            "~/Scripts/jquery.validate*"));
+             //NEVER USED
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                        "~/Scripts/jquery.validate*"));
 
-            //bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-            //            "~/Scripts/modernizr-*"));
+            bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
+                        "~/Scripts/modernizr-*"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/respond.js"));
+
+
+
+            bundles.Add(new ScriptBundle("~/bundles/ajaxSetTop").Include(
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery.unobtrusive-ajax.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/custom").Include(
                 "~/Scripts/customScript.js"));

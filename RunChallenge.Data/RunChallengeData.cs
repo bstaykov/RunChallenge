@@ -19,7 +19,7 @@
 
         public Repository.IRepository<User> Users
         {
-            get { throw new System.NotImplementedException(); }
+            get { return this.GetRepository<User>(); }
         }
 
         public Repository.IRepository<Article> Articles
@@ -45,6 +45,10 @@
         public Repository.IRepository<Event> Events
         {
             get { return this.GetRepository<Event>(); }
+        }
+        public Repository.IRepository<EventUser> EventUsers
+        {
+            get { return this.GetRepository<EventUser>(); }
         }
 
         public Repository.IRepository<Target> Targets

@@ -1,0 +1,11 @@
+﻿@using RunChallenge.MVC.Areas.Administration.Models
+@model IEnumerable<UserModel>
+
+@{
+    ViewBag.Title = "GetUsers";
+}
+
+<h2>GetUsers</h2>
+
+@Html.Partial("_ListOfUsers", Model)
+

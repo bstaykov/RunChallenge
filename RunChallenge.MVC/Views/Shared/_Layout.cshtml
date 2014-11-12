@@ -5,10 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @*@Scripts.Render("~/bundles/jquery")*@
-    @*@Scripts.Render("~/bundles/modernizr")*@
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("styles", required: false)
+
+    @if (IsSectionDefined("AjaxTop"))
+    {
+        @RenderSection("AjaxTop", required: false)
+    }
+    else
+    {
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/modernizr")
+
+        @Styles.Render("~/Content/kendo")
+    }
+
+    @*@RenderSection("styles", required: false)*@
     @Styles.Render("~/Content/custom")
 </head>
 <body>
@@ -31,6 +41,8 @@
                     <li>@Html.ActionLink("Insert Article", "InsertArticle", "Articles", new { area = "Forum" }, null)</li>
                     <li>@Html.ActionLink("Articles", "ListOfArticles", "Articles", new { area = "Forum" }, null)</li>
                     <li>@Html.ActionLink("Admin", "Navigation", "Home", new { area = "Administration" }, null)</li>
+                    <li>@Html.ActionLink("AdminUsers", "GetUsers", "Home", new { area = "Administration" }, null)</li>
+                    
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -47,7 +59,10 @@
     </div>
 
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false) 
+
+    @*@RenderSection("scripts", required: false)*@
+    @Scripts.Render("~/bundles/kendo")
+
     @Scripts.Render("~/bundles/custom")
 </body>
 </html>

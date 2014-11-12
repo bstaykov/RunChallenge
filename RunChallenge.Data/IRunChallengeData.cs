@@ -17,6 +17,8 @@
 
         IRepository<Event> Events { get; }
 
+        IRepository<EventUser> EventUsers { get; }
+
         IRepository<Target> Targets { get; }
 
         IRepository<Workout> Workouts { get; }

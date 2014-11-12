@@ -1,0 +1,19 @@
+﻿@using RunChallenge.MVC.Areas.Administration.Models
+@model IEnumerable<UserModel>
+
+@(Html.Kendo()
+    .Grid<UserModel>(Model)
+    .Name("grid")
+        .Columns(cols =>
+        {
+        cols.Bound(user => user.Id);
+        cols.Bound(user => user.UserName);
+        cols.Bound(user => user.Email);
+        cols.Bound(user => user.WorkoutsCount);
+        //cols.Template()
+    })
+    .Sortable()
+    .Pageable()
+    .Filterable()
+    .Groupable()
+    )

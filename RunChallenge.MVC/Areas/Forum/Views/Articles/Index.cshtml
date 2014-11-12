@@ -5,6 +5,10 @@
     ViewBag.Title = "Articles";
 }
 
+@section AjaxTop {
+    @Scripts.Render("~/bundles/ajaxSetTop")
+}
+
 <h2> Forum View </h2>
 
 @using (Ajax.BeginForm("Search", null,

@@ -203,6 +203,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Administration\Models\UserModel.cs" />
     <Compile Include="Areas\Forum\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
     <Compile Include="Areas\Forum\Models\ArticleInputModel.cs" />
@@ -455,6 +456,8 @@
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Areas\Forum\Views\Shared\_ArticleResult.cshtml" />
     <Content Include="Areas\Forum\Views\Shared\_ArticleBinding.cshtml" />
+    <Content Include="Areas\Administration\Views\Home\GetUsers.cshtml" />
+    <Content Include="Areas\Administration\Views\Shared\_ListOfUsers.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -535,10 +538,11 @@
     <Content Include="Views\Home\_LastInsertedWorkouts.cshtml" />
     <Content Include="Scripts\kendo\kendo.all.min.js.map" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js.map" />
+    <Content Include="Views\Shared\DisplayTemplates\Int32.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\String.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Administration\Models\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>

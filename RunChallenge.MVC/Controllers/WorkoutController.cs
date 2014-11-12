@@ -43,7 +43,6 @@
             //    .Take(3)
             //    .ToList();
 
-
             var userW = this.data.Workouts.All()
                 .Where(w => w.UserId == currentUserId)
                 .OrderByDescending(w => w.Date)

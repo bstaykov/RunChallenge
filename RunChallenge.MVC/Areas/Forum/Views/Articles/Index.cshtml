@@ -1,0 +1,30 @@
+﻿@using RunChallenge.MVC.Areas.Forum.Models
+@model IEnumerable<ArticleItemModel>
+
+@{
+    ViewBag.Title = "Articles";
+}
+
+<h2> Forum View </h2>
+
+@using (Ajax.BeginForm("Search", null,
+    new AjaxOptions
+    {
+        UpdateTargetId = "results",
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST"
+    },
+    new { id = "searchForm" }))
+{
+    <input class="input-lg" type="text" name="query" placeholder="Title..." />
+    <input class="btn" type="submit" value="Search Article"/>
+}
+<script>
+    function onFormSubmitLocal() {
+        $('#searchForm').submit();
+    }
+</script>
+
+<div id="results">
+    @Html.Partial("_ArticleResult", Model)
+</div>

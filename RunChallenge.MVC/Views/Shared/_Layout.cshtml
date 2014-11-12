@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @*@Scripts.Render("~/bundles/modernizr")*@
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/modernizr")
     @RenderSection("styles", required: false)
     @Styles.Render("~/Content/custom")
 </head>
@@ -26,19 +27,19 @@
                     <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Workouts", "LastWorkouts", "Workout", new { area = "" }, null)</li>
                     <li>@Html.ActionLink("Insert Workout", "InsertWorkout", "Workout", new { area = "" }, null)</li>
-                    <li>@Html.ActionLink("Forum", "Index", "Article", new { area = "Forum" }, null)</li>
-                    <li>@Html.ActionLink("Insert Article", "InsertArticle", "Article", new { area = "Forum" }, null)</li>
-                    <li>@Html.ActionLink("Articles", "ListOfArticles", "Article", new { area = "Forum" }, null)</li>
+                    <li>@Html.ActionLink("Forum", "Index", "Articles", new { area = "Forum" }, null)</li>
+                    <li>@Html.ActionLink("Insert Article", "InsertArticle", "Articles", new { area = "Forum" }, null)</li>
+                    <li>@Html.ActionLink("Articles", "ListOfArticles", "Articles", new { area = "Forum" }, null)</li>
+                    <li>@Html.ActionLink("Admin", "Navigation", "Home", new { area = "Administration" }, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div> 
+    </div>
     <div class="container body-content">
-        @*<div id="content" style="display:none;">      
-            @RenderBody()
-        </div>*@
-        @RenderBody()
+        <div id="content" style="display:none;">
+             @RenderBody()
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
@@ -46,19 +47,7 @@
     </div>
 
     @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-    @*<script>
-        //$("#content").hide(1000);
-        //$("#content").show(3000);
-
-        //$("#content").fadeOut(1000);
-        $("#content").fadeIn(2000);
-        
-        //$(".custom-message").slideUp(3000);
-        $(".custom-message").fadeIn(5000);
-        $(".custom-message").fadeOut(5000);
-        //$("#content").slideDown(2000);
-        $(".custom-message-slide").fadeOut(5000);
-    </script>*@
+    @RenderSection("scripts", required: false) 
+    @Scripts.Render("~/bundles/custom")
 </body>
 </html>

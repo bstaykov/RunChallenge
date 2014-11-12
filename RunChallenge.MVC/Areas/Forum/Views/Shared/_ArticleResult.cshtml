@@ -3,22 +3,21 @@
 
 @foreach (ArticleItemModel article in Model)
 {
-    <div>
+    <div class="panel-title">
         <strong>
             @article.Title
         </strong>
     </div>
-    @Ajax.ActionLink("Read article", "ContentById", "Article",
-        new { id = @article.Id },       
+    @Ajax.ActionLink("Read article", "ContentById", "Articles",
+        new { id = @article.Id, @class = "panel-title" },
         new AjaxOptions
         {
             InsertionMode = InsertionMode.Replace,
             UpdateTargetId = "article-content",
-            HttpMethod = "POST"
         })
     <br />
 }
 
-<div id="article-content"></div>
+<div id="article-content" class="jumbotron"></div>
 
 

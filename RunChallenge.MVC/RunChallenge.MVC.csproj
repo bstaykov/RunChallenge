@@ -101,6 +101,13 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.Cors.5.2.2\lib\net45\System.Web.Cors.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -110,6 +117,13 @@
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.2\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Cors">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Cors.5.2.2\lib\net45\System.Web.Http.Cors.dll</HintPath>
     </Reference>
     <Reference Include="System.Web.Mvc, Version=5.2.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -189,7 +203,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
     <Compile Include="Areas\Administration\Controllers\HomeController.cs" />
-    <Compile Include="Areas\Forum\Controllers\ArticleController.cs" />
+    <Compile Include="Areas\Forum\Controllers\ArticlesController.cs" />
     <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
     <Compile Include="Areas\Forum\Models\ArticleInputModel.cs" />
     <Compile Include="Areas\Forum\Models\ArticleItemModel.cs" />
@@ -436,6 +450,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\customScript.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Areas\Forum\Views\Shared\_ArticleResult.cshtml" />
+    <Content Include="Areas\Forum\Views\Shared\_ArticleBinding.cshtml" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\kendo\jquery.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -444,11 +466,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\Forum\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Forum\Views\Article\Index.cshtml" />
-    <Content Include="Areas\Forum\Views\Article\InsertArticle.cshtml" />
-    <Content Include="Areas\Forum\Views\Article\ListOfArticles.cshtml" />
-    <Content Include="Areas\Forum\Views\Article\_ArticleResult.cshtml" />
-    <Content Include="Areas\Forum\Views\Shared\_ArticleBinding.cshtml" />
+    <Content Include="Areas\Forum\Views\Articles\Index.cshtml" />
+    <Content Include="Areas\Forum\Views\Articles\InsertArticle.cshtml" />
+    <Content Include="Areas\Forum\Views\Articles\ListOfArticles.cshtml" />
     <Content Include="Scripts\kendo\kendo.all.min.js" />
     <Content Include="Scripts\kendo\kendo.aspnetmvc.min.js" />
     <Content Include="Views\Shared\DisplayTemplates\DateTime.cshtml" />
@@ -463,9 +483,6 @@
     <Content Include="Scripts\jquery-2.1.1.js" />
     <Content Include="Scripts\jquery-2.1.1.min.js" />
     <Content Include="Scripts\jquery-2.1.1.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
@@ -474,7 +491,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

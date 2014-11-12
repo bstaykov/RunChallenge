@@ -12,24 +12,24 @@
     using System.Net;
     using System.Web.Mvc;
     using RunChallenge.MVC.Filters;
+    using System.Web.Http.Cors;
 
     //[AllowCrossDomain]
-    public class ArticleController : BaseController
+    public class ArticlesController : BaseController
     {
         IRunChallengeData data;
 
-        public ArticleController()
+        public ArticlesController()
             :this(new RunChallengeData(new RunChallengeDbContext()))
         {
         }
 
-        public ArticleController(IRunChallengeData data)
+        public ArticlesController(IRunChallengeData data)
         {
             this.data = data;
         }
 
         [HttpGet]
-        //[OutputCache(Duration = 60)]
         public ActionResult Index()
         {
             var data = this.data.Articles.All()
@@ -79,8 +79,6 @@
         [OutputCache(Duration = 60)]
         public ActionResult ListOfArticles()
         {
-            // TODO get articles from db
-
             var lastArticles = this.data.Articles.All()
                 .Where(s => s.Status == ArticleStatus.Visible)
                 .OrderByDescending(d => d.DateTimePosted)
@@ -99,8 +97,6 @@
             return View(lastArticles);
         }
 
-        //[HttpPost]
-        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult Search(string query)
         {
             var result = this.data.Articles
@@ -113,8 +109,6 @@
             return this.PartialView("_ArticleResult", result);
         }
 
-        //[HttpPost]
-        //[OutputCache(NoStore = true, Duration = 0, VaryByParam = "*")]
         public ActionResult ContentById(int id)
         {
             if (!Request.IsAjaxRequest())

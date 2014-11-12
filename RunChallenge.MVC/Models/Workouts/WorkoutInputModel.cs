@@ -3,6 +3,7 @@
     using System.ComponentModel.DataAnnotations;
     using System;
     using System.Collections.Generic;
+    using System.Globalization;
 
     public class WorkoutInputModel :IValidatableObject
     {
@@ -75,11 +76,14 @@
             }
 
             DateTime date;
-            if (!(DateTime.TryParse(Month + "/" + Day + "/" + Year, out date)))
+            string dataString = Month + "/" + Day + "/" + Year;
+            string format = "M/d/yyyy";
+            if (!(DateTime.TryParseExact(dataString, format, new CultureInfo("en-US"), DateTimeStyles.None, out date)))
             {
                 yield return new ValidationResult("Invalid date!", new[] { "Day", "Month", "Year" });
-            }
-            else if (date > DateTime.Now)
+            } 
+            // TODO addDays(1) !!!
+            else if (date > DateTime.Now.AddDays(1))
             {
                 yield return new ValidationResult("Future date!", new[] { "Day", "Month", "Year" });
             }

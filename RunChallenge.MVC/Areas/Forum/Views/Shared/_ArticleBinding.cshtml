@@ -1,7 +1,7 @@
 ﻿@using RunChallenge.MVC.Areas.Forum.Models
 @model ArticleInputModel
 
-@using (Html.BeginForm("InsertArticle", "Article", FormMethod.Post))
+@using (Html.BeginForm("InsertArticle", "Articles", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
 
@@ -38,26 +38,26 @@
         @Html.Submit("Save")
         @if (@TempData["Success"] != null)
         {
-        <span class="alert-success custom-message">
-            @TempData["Success"]
-        </span>
+            <span class="alert-success custom-message">
+                @TempData["Success"]
+            </span>
         }
     </div>
 }
 
 @*<div id="parent">
-    <div id="1">
-        <input type="text" name="name" value="Name" />
+        <div id="1">
+            <input type="text" name="name" value="Name" />
+        </div>
     </div>
-</div>
-<button onclick="cloneEl()">Add Name</button>
+    <button onclick="cloneEl()">Add Name</button>
 
-<script>
-    function cloneEl() {
-        alert("clone...");
-        $("#1").clone().attr("id", 2).appendTo("#parent");
-    }
-</script>*@
+    <script>
+        function cloneEl() {
+            alert("clone...");
+            $("#1").clone().attr("id", 2).appendTo("#parent");
+        }
+    </script>*@
 
 
 

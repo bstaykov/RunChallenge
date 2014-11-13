@@ -236,6 +236,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="App_Start\ViewenginesConfiguration.cs" />
     <Compile Include="ValidationAttributes\CustomLengthAttribute.cs" />
+    <Compile Include="ViewModels\Areas\Home\IndexRunChallengeArticleViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.cerulean.css" />
@@ -580,6 +581,10 @@
     <ProjectReference Include="..\RunChallenge.Models\RunChallenge.Models.csproj">
       <Project>{e167de3a-64d0-467b-b916-e5d95826413a}</Project>
       <Name>RunChallenge.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\RunChallenge.Web.Infrastructure\RunChallenge.Web.Infrastructure.csproj">
+      <Project>{c507b27a-2c07-411d-9964-d5e7e3cb9a1c}</Project>
+      <Name>RunChallenge.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

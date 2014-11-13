@@ -11,6 +11,9 @@ namespace RunChallenge.MVC.App_Start
     using Ninject;
     using Ninject.Web.Common;
     using RunChallenge.Data;
+    using System.Data.Entity;
+    using RunChallenge.Common.Repository;
+    using RunChallenge.Models;
 
     public static class NinjectWebCommon 
     {
@@ -63,7 +66,17 @@ namespace RunChallenge.MVC.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             //kernel.Bind<IRunChallengeData>().To<RunChallengeData>();
-            
+
+            kernel.Bind<DbContext>().To<RunChallengeDbContext>();
+
+            kernel.Bind(typeof(IRepository<Article>)).To(typeof(DeletableEntityRepository<Article>));
+
+            kernel.Bind(typeof(IDeletableEntityRepository<>))
+                .To(typeof(DeletableEntityRepository<>));
+
+            //kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+
+            //kernel.Bind<ISanitizer>().To<HtmlSanitizerAdapter>();
         }        
     }
 }

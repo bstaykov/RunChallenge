@@ -14,13 +14,6 @@ using System.Web.Mvc;
     {
         private IRepository<Article> articles;
 
-        // Poor man's dipendancy inversion
-
-        public HomeController()
-            :this(new GenericRepository<Article>(new RunChallengeDbContext()))
-        {
-        }
-
         public HomeController(IRepository<Article> articles)
         {
             this.articles = articles;

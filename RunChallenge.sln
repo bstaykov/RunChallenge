@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunChallenge.Data", "RunCha
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunChallenge.Common", "RunChallenge.Common\RunChallenge.Common.csproj", "{7326B442-8ECB-4CEC-855F-C05468537950}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RunChallenge.Web.Infrastructure", "RunChallenge.Web.Infrastructure\RunChallenge.Web.Infrastructure.csproj", "{C507B27A-2C07-411D-9964-D5E7E3CB9A1C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7326B442-8ECB-4CEC-855F-C05468537950}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7326B442-8ECB-4CEC-855F-C05468537950}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7326B442-8ECB-4CEC-855F-C05468537950}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C507B27A-2C07-411D-9964-D5E7E3CB9A1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C507B27A-2C07-411D-9964-D5E7E3CB9A1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C507B27A-2C07-411D-9964-D5E7E3CB9A1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C507B27A-2C07-411D-9964-D5E7E3CB9A1C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

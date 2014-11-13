@@ -18,7 +18,7 @@ namespace RunChallenge.MVC
         private static void RegisterStyleBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css"));
+                      "~/Content/bootstrap.cerulean.min.css"));
 
             bundles.Add(new StyleBundle("~/Content/kendo").Include(
                 "~/Content/kendo/kendo.common.min.css",

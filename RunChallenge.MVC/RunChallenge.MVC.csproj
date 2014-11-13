@@ -208,6 +208,8 @@
     <Compile Include="Areas\Forum\ForumAreaRegistration.cs" />
     <Compile Include="Areas\Forum\Models\ArticleInputModel.cs" />
     <Compile Include="Areas\Forum\Models\ArticleItemModel.cs" />
+    <Compile Include="Areas\Moderation\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Moderation\ModerationAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
@@ -458,6 +460,9 @@
     <Content Include="Areas\Forum\Views\Shared\_ArticleBinding.cshtml" />
     <Content Include="Areas\Administration\Views\Home\GetUsers.cshtml" />
     <Content Include="Areas\Administration\Views\Shared\_ListOfUsers.cshtml" />
+    <Content Include="Areas\Moderation\Views\web.config" />
+    <Content Include="Areas\Moderation\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Moderation\Views\_ViewStart.cshtml" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
@@ -543,6 +548,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Moderation\Models\" />
+    <Folder Include="Areas\Moderation\Views\Shared\" />
     <Folder Include="Views\Admin\" />
     <Folder Include="Views\Shared\EditorTemplates\" />
   </ItemGroup>
@@ -554,6 +561,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\RunChallenge.Common\RunChallenge.Common.csproj">
+      <Project>{7326b442-8ecb-4cec-855f-c05468537950}</Project>
+      <Name>RunChallenge.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RunChallenge.Data\RunChallenge.Data.csproj">
       <Project>{975d0a8a-de0c-4c4f-97cd-3191bded3319}</Project>
       <Name>RunChallenge.Data</Name>

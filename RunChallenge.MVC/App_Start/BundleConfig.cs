@@ -38,7 +38,7 @@ namespace RunChallenge.MVC
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Scripts/kendo/jquery.min.js"));
             
-             //NEVER USED
+             // Login/Register
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 

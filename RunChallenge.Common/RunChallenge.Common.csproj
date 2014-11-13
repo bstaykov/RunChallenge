@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E167DE3A-64D0-467B-B916-E5D95826413A}</ProjectGuid>
+    <ProjectGuid>{7326B442-8ECB-4CEC-855F-C05468537950}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RunChallenge.Models</RootNamespace>
-    <AssemblyName>RunChallenge.Models</AssemblyName>
+    <RootNamespace>RunChallenge.Common</RootNamespace>
+    <AssemblyName>RunChallenge.Common</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -36,12 +36,6 @@
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.Core">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
-      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -52,31 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Article.cs" />
-    <Compile Include="ArticleCategory.cs" />
-    <Compile Include="ArticleStatus.cs" />
-    <Compile Include="Comment.cs" />
-    <Compile Include="CommentLike.cs" />
-    <Compile Include="CommentStatus.cs" />
-    <Compile Include="Event.cs" />
-    <Compile Include="EventScheduleStatus.cs" />
-    <Compile Include="EventUser.cs" />
-    <Compile Include="EventVisibilityStatus.cs" />
-    <Compile Include="ArticleLike.cs" />
-    <Compile Include="Target.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Models\AuditInfo.cs" />
+    <Compile Include="Models\IAuditInfo.cs" />
+    <Compile Include="Models\IDeletableEntity.cs" />
+    <Compile Include="Models\IOrderable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Workout.cs" />
+    <Compile Include="Repository\DeletableEntityRepository.cs" />
+    <Compile Include="Repository\GenericRepository.cs" />
+    <Compile Include="Repository\IDeletableEntityRepository.cs" />
+    <Compile Include="Repository\IRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\RunChallenge.Common\RunChallenge.Common.csproj">
-      <Project>{7326b442-8ecb-4cec-855f-c05468537950}</Project>
-      <Name>RunChallenge.Common</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

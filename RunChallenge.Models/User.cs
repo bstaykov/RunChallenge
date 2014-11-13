@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data.Entity;
-using System.Security.Claims;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
-
-namespace RunChallenge.Models
+﻿namespace RunChallenge.Models
 {
-    public class User : IdentityUser
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Data.Entity;
+    using System.Security.Claims;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using RunChallenge.Common.Models;
+
+    public class User : IdentityUser, IAuditInfo, IDeletableEntity
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
@@ -29,6 +30,9 @@ namespace RunChallenge.Models
 
         public User()
         {
+            // This will prevent User>manager.CreateAsync from causing exceptions
+            this.CreatedOn = DateTime.Now;
+
             this.comments = new HashSet<Comment>();
             this.articles = new HashSet<Article>();
             this.workouts = new HashSet<Workout>();
@@ -108,5 +112,15 @@ namespace RunChallenge.Models
                 this.eventusers = value;
             }
         }
+
+        public DateTime CreatedOn { get; set; }
+
+        public bool PreserveCreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

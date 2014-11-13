@@ -1,0 +1,12 @@
+﻿@using RunChallenge.Models
+@model IEnumerable<Article>
+
+<div>
+    @{ foreach (var article in Model)
+     {
+        <h1>@article.Title</h1>
+        <h3>@article.Content</h3>
+        <hr />
+     }
+    }
+</div>

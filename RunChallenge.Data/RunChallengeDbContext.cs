@@ -9,6 +9,7 @@
     using RunChallenge.Models;
     using System.Data.Entity;
     using RunChallenge.Data.Migrations;
+    using RunChallenge.Common.Models;
 
     public class RunChallengeDbContext : IdentityDbContext<User>
     {
@@ -22,29 +23,6 @@
         {
             return new RunChallengeDbContext();
         }
-
-        //protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.Entity<Event>()
-        //        .HasRequired(f => f.User)
-        //        .WithMany(b => b.Events)
-        //        .HasForeignKey(f => f.UserId);
-
-        //    modelBuilder.Entity<EventUser>()
-        //        .HasKey(fb => new { fb.EventId, fb.UserId });
-
-        //    modelBuilder.Entity<EventUser>()
-        //        .HasRequired(fb => fb.Event)
-        //        .WithMany(f => f.EventUsers)
-        //        .HasForeignKey(fb => fb.EventId);
-
-        //    modelBuilder.Entity<EventUser>()
-        //        .HasRequired(fb => fb.User)
-        //        .WithMany(b => b.EventUsers)
-        //        .HasForeignKey(fb => fb.UserId);
-
-        //    base.OnModelCreating(modelBuilder);
-        //}
 
         public IDbSet<Article> Articles { get; set; }
 
@@ -64,5 +42,34 @@
 
         public IDbSet<EventUser> EventUsers { get; set; }
 
+        public override int SaveChanges()
+        {
+            this.ApplyAuditInfoRules();
+            return base.SaveChanges();
+        }
+
+        private void ApplyAuditInfoRules()
+        {
+            foreach (var entry in
+                this.ChangeTracker.Entries()
+                    .Where(
+                        e =>
+                        e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
+            {
+                var entity = (IAuditInfo)entry.Entity;
+
+                if (entry.State == EntityState.Added)
+                {
+                    if (!entity.PreserveCreatedOn)
+                    {
+                        entity.CreatedOn = DateTime.Now;
+                    }
+                }
+                else
+                {
+                    entity.ModifiedOn = DateTime.Now;
+                }
+            }
+        }
     }
 }

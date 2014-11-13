@@ -11,23 +11,14 @@ namespace RunChallenge.Data.Migrations
         public Configuration()
         {
             this.AutomaticMigrationsEnabled = true;
+
+            // TODO remove in production
             this.AutomaticMigrationDataLossAllowed = true;
 
         }
 
         protected override void Seed(RunChallengeDbContext context)
         {
-
-            //if (!(context.Users.Any()))
-            //{
-            //    User user1 = new User
-            //    {
-            //        UserName = "Bai Ivan",
-            //        Email = "abv@abv.bg",
-            //        PasswordHash = ???
-            //    };
-            //}
-
             if (context.Users.Any() && !(context.Workouts.Any()))
             {
                 User user1 = context.Users.FirstOrDefault();
@@ -46,21 +37,6 @@ namespace RunChallenge.Data.Migrations
                 context.Workouts.Add(workout);
                 context.SaveChanges();
             }
-
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
-
-
         }
     }
 }

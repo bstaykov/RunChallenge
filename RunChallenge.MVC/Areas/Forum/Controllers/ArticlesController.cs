@@ -33,6 +33,7 @@
         {
             var data = this.data.Articles.All()
                 .AsQueryable()
+                .Where(a => a.IsDeleted == false && a.Status == ArticleStatus.Visible)
                 .Select(ArticleItemModel.FromArticle)
                 .ToList();
             return View(data);
@@ -69,6 +70,8 @@
                 TempData["Success"] = "Article successfully added...";
 
                 return RedirectToAction("InsertArticle");
+
+                //return RedirectToAction("Display", new { id = newArticle.Id, url = "url" });
             }
             return View(article);
         }
@@ -100,7 +103,7 @@
             var result = this.data.Articles
                 .All()
                 .AsQueryable()
-                .Where(article => article.Title.ToLower().Contains(query.ToLower()))
+                .Where(article => article.Title.ToLower().Contains(query.ToLower()) && article.IsDeleted == false && article.Status == ArticleStatus.Visible)
                 .Select(ArticleItemModel.FromArticle)
                 .ToList();
 
@@ -123,6 +126,16 @@
             }
 
             return this.Content(article.Content);
+        }
+
+        public ActionResult Display(int id, string url, int? page)
+        {
+            return Content(id + " " + url);
+        }
+
+        public ActionResult GetByCategory(string category)
+        {
+            return Content(category);
         }
     }
 }

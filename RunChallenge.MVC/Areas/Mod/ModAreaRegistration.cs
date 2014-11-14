@@ -1,22 +1,22 @@
 ﻿using System.Web.Mvc;
 
-namespace RunChallenge.MVC.Areas.Moderation
+namespace RunChallenge.MVC.Areas.Mod
 {
-    public class ModerationAreaRegistration : AreaRegistration 
+    public class ModAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {
             get 
             {
-                return "Moderation";
+                return "Mod";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Moderation_default",
-                "Moderation/{controller}/{action}/{id}",
+                "Mod_default",
+                "Mod/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }

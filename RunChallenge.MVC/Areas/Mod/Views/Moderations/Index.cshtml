@@ -1,0 +1,38 @@
+﻿@using RunChallenge.MVC.Areas.Mod.Models
+@model IEnumerable<ArticleModerateModel>
+
+<div class="container">
+
+    @if (@TempData["CancelModerated"] != null)
+    {
+        <span class="alert-warning custom-message">
+            @TempData["CancelModerated"]
+        </span>
+    }
+
+    @if (@TempData["SuccesfullyModerated"] != null)
+    {
+        <span class="alert-warning custom-message">
+            @TempData["SuccesfullyModerated"]
+        </span>
+    }
+
+    @{
+        foreach (var article in Model)
+        {
+            <div class="row">
+                <div class="col-md-2">@article.Title</div>
+                <div class="col-md-2">@article.Content</div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <span class="badge">
+                            @article.Category
+                        </span>
+                    </div>
+                </div>
+                @Html.ActionLink("Moderate", "Moderate", new { id = @article.Id })
+            </div>
+            <hr />
+        }
+    }
+</div>

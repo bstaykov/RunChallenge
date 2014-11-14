@@ -1,24 +1,18 @@
-﻿namespace RunChallenge.MVC.Areas.Forum.Models
+﻿namespace RunChallenge.MVC.Areas.Mod.Models
 {
-    using System;
-    using System.ComponentModel.DataAnnotations;
     using RunChallenge.Models;
+    using RunChallenge.Web.Infrastructure.Mapping;
+    using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
 
-    public class ArticleInputModel
+    public class ArticleModerateModel : IMapFrom<Article>
     {
-        private const string DEFAULT_TITLE = "Title...";
-        private const string DEFAULT_CONTENT = "Content...";
-        private const ArticleCategory DEFAULT_CATEGORY = ArticleCategory.Event;
-
-        public ArticleInputModel()
-        {
-            this.Title = DEFAULT_TITLE;
-            this.Content = DEFAULT_CONTENT;
-            this.Category = DEFAULT_CATEGORY;
-        }
+        [Required]
+        public int Id { get; set; }
 
         [Required(ErrorMessage = "Title is required!")]
         [MinLength(5, ErrorMessage = "Minimum 5 characters!")]

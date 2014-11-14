@@ -8,6 +8,7 @@ namespace RunChallenge.Models
 {
     public enum ArticleStatus
     {
+        Moderate,
         NotVisible,
         Visible,
         Deleted

@@ -65,8 +65,6 @@ namespace RunChallenge.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            //kernel.Bind<IRunChallengeData>().To<RunChallengeData>();
-
             kernel.Bind<DbContext>().To<RunChallengeDbContext>();
 
             kernel.Bind(typeof(IRepository<Article>)).To(typeof(DeletableEntityRepository<Article>));
@@ -74,7 +72,7 @@ namespace RunChallenge.MVC.App_Start
             kernel.Bind(typeof(IDeletableEntityRepository<>))
                 .To(typeof(DeletableEntityRepository<>));
 
-            //kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
+            kernel.Bind(typeof(IRepository<>)).To(typeof(GenericRepository<>));
 
             //kernel.Bind<ISanitizer>().To<HtmlSanitizerAdapter>();
         }        

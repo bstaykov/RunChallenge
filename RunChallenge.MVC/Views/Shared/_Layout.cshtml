@@ -44,12 +44,17 @@
                     <li>@Html.ActionLink("Articles", "ListOfArticles", "Articles", new { area = "Forum" }, null)</li>
                     <li>@Html.ActionLink("Admin", "Navigation", "Home", new { area = "Administration" }, null)</li>
                     <li>@Html.ActionLink("AdminUsers", "GetUsers", "Home", new { area = "Administration" }, null)</li>
-                    
+                    <li>@Html.ActionLink("Moderate", "Index", "Moderations", new { area = "Mod" }, null)</li>                     
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
+    <ol class="breadcrumb">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Library</a></li>
+        <li class="active">Data</li>
+    </ol>
     <div class="container body-content">
         <div id="content" style="display:none;">
              @RenderBody()

@@ -124,7 +124,9 @@
         [Authorize]
         public ActionResult DelleteAllWorkouts()
         {
-            var workouts = this.data.Workouts.All();
+            var curentUserId = this.User.Identity.GetUserId();
+            var workouts = this.data.Workouts.All()
+                .Where(user => user.UserId == curentUserId);
             if (workouts == null)
             {
                 return RedirectToAction("LastWorkouts");
@@ -133,7 +135,6 @@
             {
                 var id = item.Id;
                 this.data.Workouts.Delete(id);
-
             }
             this.data.SaveChanges();
             return RedirectToAction("LastWorkouts");

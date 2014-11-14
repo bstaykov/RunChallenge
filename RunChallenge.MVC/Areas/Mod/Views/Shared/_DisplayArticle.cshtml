@@ -1,0 +1,37 @@
+﻿@using RunChallenge.MVC.Areas.Mod.Models
+@model ArticleModerateModel
+
+@using (Html.BeginForm("Moderate", "Moderations", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    // excludes properties errors
+    @Html.ValidationSummary(true)
+
+    <div>
+        @Html.LabelFor(m => m.Title)
+        @Html.EditorFor(m => m.Title)
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Title)
+        </label>
+    </div>
+
+    <div>
+        @Html.LabelFor(m => m.Content)
+        @Html.TextAreaFor(m => m.Content)
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Content)
+        </label>
+    </div>
+    <div>
+        @Html.LabelFor(m => m.Category)
+        @Html.EnumDropDownListFor(m => m.Category)
+        <label class="alert-warning">
+            @Html.ValidationMessageFor(m => m.Category)
+        </label>
+    </div>
+    <div>
+        @Html.Submit("Submit")
+        @Html.ActionLink("Delete", "Delete", new { id = Model.Id })
+    </div>
+}

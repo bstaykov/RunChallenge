@@ -1,0 +1,19 @@
+﻿@using RunChallenge.MVC.Areas.Mod.Models
+@model ArticleModerateModel
+@{
+    ViewBag.Title = "Moderation Page";
+}
+
+<h2>Moderation Page</h2>
+
+@if (@TempData["Moderated"] != null)
+{
+    <span class="alert-warning custom-message">
+        @TempData["Moderated"]
+    </span>
+}
+
+<div class="jumbotron">
+    @Html.Partial("_DisplayArticle", Model)
+</div>
+

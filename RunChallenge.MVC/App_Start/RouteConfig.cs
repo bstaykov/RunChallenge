@@ -16,6 +16,21 @@ namespace RunChallenge.MVC
 
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    name: "Moderate Article",
+            //    url: "moderations/{id}",
+            //    defaults: new { controller = "Moderations", action = "Moderate" });
+
+            routes.MapRoute(
+                name: "Get articles by category",
+                url: "articles/categorised/{category}",
+                defaults: new { controller = "Articles", action = "GetByCategory" });
+
+            routes.MapRoute(
+                name: "Display Article",
+                url: "articles/{id}/{url}",
+                defaults: new { controller = "Articles", action = "Display" });
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

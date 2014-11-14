@@ -9,14 +9,14 @@
 
     <div>
         @Html.LabelFor(m => m.Km)
-        @Html.TextBoxFor(m => m.Km)
+        @Html.EditorFor(m => m.Km)
         <label class="alert-warning">
             @Html.ValidationMessageFor(m => m.Km)
         </label>
     </div>
     <div>
         @Html.LabelFor(m => m.Meters)
-        @Html.TextBoxFor(m => m.Meters)
+        @Html.EditorFor(m => m.Meters)
         <label class="alert-warning">
             @Html.ValidationMessageFor(m => m.Meters)
         </label>
@@ -42,18 +42,7 @@
             @Html.ValidationMessageFor(m => m.Seconds)
         </label>
     </div>
-
-    @*<div>
-            @Html.EditorFor(m => m.Date , new { StartYear = DateTime.Now.Year - 2, EndYear = DateTime.Now.Year })
-            <label class="alert-warning">
-                @Html.ValidationMessageFor(m => m.Date)
-                @if (TempData["DateTime"] != null)
-                {
-                    @TempData["DateTime"]
-                }
-            </label>
-        </div>*@
-
+    
     var date = DateTime.Now;
     var year = date.Year;
     var month = date.Month;
@@ -88,14 +77,14 @@
     </div>
     <div>
         @Html.LabelFor(m => m.Location)
-        @Html.TextBoxFor(m => m.Location)
+        @Html.EditorFor(m => m.Location)
         <label class="alert-warning">
             @Html.ValidationMessageFor(m => m.Location)
         </label>
     </div>
     <div>
         @Html.LabelFor(m => m.Comment)
-        @Html.TextBoxFor(m => m.Comment)
+        @Html.EditorFor(m => m.Comment)
         <label class="alert-warning">
             @Html.ValidationMessageFor(m => m.Comment)
         </label>
@@ -109,27 +98,3 @@
 }
 
 <hr />
-
-@*@using (Html.BeginForm("InsertWorkout", "Workout", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-
-        <div>
-            @Html.LabelFor(m => m.Name)
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.Name, new { type = "text", pattern = ".{4,}", required = "required", title = "4 characters minimum", maxlength = 5 })
-            <label class="alert-warning">
-                @Html.ValidationMessageFor(m => m.Name)
-            </label>
-        </div>
-
-        <div>
-            @Html.LabelFor(m => m.Age)
-        </div>
-        <div>
-            @Html.TextBoxFor(m => m.Age)
-        </div>
-        <input type="submit" value="Submit"/>
-        @Html.Submit()
-    }*@

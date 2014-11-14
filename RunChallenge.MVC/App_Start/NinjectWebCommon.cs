@@ -66,6 +66,7 @@ namespace RunChallenge.MVC.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
+
             kernel.Bind<DbContext>().To<RunChallengeDbContext>();
 
             kernel.Bind(typeof(IRepository<Article>)).To(typeof(DeletableEntityRepository<Article>));

@@ -21,7 +21,7 @@
 
         [AllowHtml]
         [Required(ErrorMessage = "Content is required!")]
-        [MinLength(5, ErrorMessage = "Minimum 5 characters!")]
+        [MinLength(20, ErrorMessage = "Minimum 20 characters!")]
         [MaxLength(1000, ErrorMessage = "Maximum 1000 characters!")]
         public string Content { get; set; }
 

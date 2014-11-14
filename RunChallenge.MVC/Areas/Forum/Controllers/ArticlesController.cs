@@ -12,20 +12,24 @@
     using System.Net;
     using System.Web.Mvc;
     using RunChallenge.MVC.Filters;
+    using RunChallenge.Web.Infrastructure;
 
     //[AllowCrossDomain]
     public class ArticlesController : BaseController
     {
-        IRunChallengeData data;
+        private readonly IRunChallengeData data;
+
+        private readonly ISanitizer sanitizer;
 
         public ArticlesController()
-            :this(new RunChallengeData(new RunChallengeDbContext()))
+            :this(new RunChallengeData(new RunChallengeDbContext()), new HtmlSanitizerAdapter())
         {
         }
 
-        public ArticlesController(IRunChallengeData data)
+        public ArticlesController(IRunChallengeData data, ISanitizer sanitizer)
         {
             this.data = data;
+            this.sanitizer = sanitizer;
         }
 
         [HttpGet]
@@ -51,6 +55,13 @@
         [ValidateAntiForgeryToken]
         public ActionResult InsertArticle(ArticleInputModel article)
         {
+            //var art = this.data.Articles.All();
+            //foreach (var item in art)
+            //{
+            //    this.data.Articles.Delete(item);
+            //}
+            //this.data.SaveChanges();
+
             if (ModelState.IsValid)
             {
                 var userId = this.User.Identity.GetUserId();
@@ -59,15 +70,15 @@
                 {
                     UserId = userId,
                     Title = article.Title,
-                    Content = article.Content,
+                    Content = sanitizer.Sanitize(article.Content),
                     DateTimePosted = DateTime.Now,
-                    Status = ArticleStatus.Visible
+                    Status = ArticleStatus.Moderate
                 };
 
                 this.data.Articles.Add(newArticle);
                 this.data.SaveChanges();
 
-                TempData["Success"] = "Article successfully added...";
+                TempData["Success"] = "Article successfully added and will ve visible after moderation.";
 
                 return RedirectToAction("InsertArticle");
 

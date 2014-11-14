@@ -11,8 +11,9 @@
     using RunChallenge.MVC.Areas.Administration.Models;
     using System.Linq;
     using System.Web;
+    using System.Web.Security;
 
-    public class HomeController : BaseController
+    public class HomeController : AdminController
     {
         IRunChallengeData data;
 
@@ -42,6 +43,16 @@
                 .ToList();
 
             return View(usersList);
+        }
+
+        [HttpGet]
+        public ActionResult MakeModerator(string id)
+        {
+            //var result = await UserManager.AddToRolesAsync(user.Id, selectedRoles);
+            var user = this.data.Users.All().Where(userID => userID.Id == id).FirstOrDefault();
+            Roles.AddUserToRole(user.UserName, "Moderator");
+            this.data.SaveChanges();
+            return RedirectToAction("GetUsers", "Administration");
         }
     }
 }

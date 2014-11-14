@@ -12,11 +12,14 @@ namespace RunChallenge.MVC.Controllers
     [Log]
     public abstract class BaseController : Controller
     {
+        //public BaseController(IRunChallengeData data)
+        //{
+        //    this.Data = data;
+        //}
 
+        //protected IRunChallengeData Data { get; set; }
 
-        ////protected RunChallengeData Data { get; set; }
-
-        ////protected User CurrentUser { get; set; }  
+        //protected User CurrentUser { get; set; }  
 
         //[NonAction]
         //public void SystemSettings()

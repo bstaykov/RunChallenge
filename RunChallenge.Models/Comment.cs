@@ -1,12 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RunChallenge.Models
+﻿namespace RunChallenge.Models
 {
-    public class Comment
+    using RunChallenge.Common.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public class Comment : IAuditInfo, IDeletableEntity
     {
         private ICollection<CommentLike> likes;
         private ICollection<Article> articles;
@@ -50,5 +52,16 @@ namespace RunChallenge.Models
                 this.articles = value;
             }
         }
+
+        public DateTime CreatedOn { get; set; }
+
+        public bool PreserveCreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }

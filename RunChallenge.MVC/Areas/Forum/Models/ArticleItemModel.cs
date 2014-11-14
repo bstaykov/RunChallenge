@@ -3,6 +3,7 @@
     using RunChallenge.Models;
     using System;
     using System.Linq.Expressions;
+    using System.Web.Mvc;
 
     public class ArticleItemModel
     {
@@ -22,6 +23,7 @@
             }
         }
 
+        [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
         public string UserName { get; set; }

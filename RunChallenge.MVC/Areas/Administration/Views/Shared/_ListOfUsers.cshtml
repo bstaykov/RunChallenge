@@ -4,16 +4,17 @@
 @(Html.Kendo()
     .Grid<UserModel>(Model)
     .Name("grid")
-        .Columns(cols =>
-        {
-        cols.Bound(user => user.Id);
+    .Columns(cols =>
+    {
         cols.Bound(user => user.UserName);
         cols.Bound(user => user.Email);
         cols.Bound(user => user.WorkoutsCount);
-        //cols.Template()
+        cols.Bound(user => user.ArticlesCount);
+        cols.Bound(user => user.Id)
+            .Template(@<text>@Html.ActionLink("Make Moderator", "MakeModerator", new { id = @item.Id })</text>);
     })
     .Sortable()
     .Pageable()
     .Filterable()
     .Groupable()
-    )
+)

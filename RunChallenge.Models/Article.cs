@@ -8,7 +8,7 @@
     using System.Text;
     using System.Threading.Tasks;
 
-    public class Article : AuditInfo, IDeletableEntity
+    public class Article : IAuditInfo, IDeletableEntity
     {
         private ICollection<ArticleLike> likes;
         private ICollection<Comment> comments;
@@ -58,6 +58,12 @@
                 this.comments = value;
             }
         }
+
+        public DateTime CreatedOn { get; set; }
+
+        public bool PreserveCreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
 
         [Index]
         public bool IsDeleted { get; set; }

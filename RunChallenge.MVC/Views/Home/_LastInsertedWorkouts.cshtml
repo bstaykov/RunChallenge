@@ -24,7 +24,9 @@
                     <td>@workout.Location</td>
                     @if ((DateTime.Now - workout.Date).Days > 0)
                     {
-                        @((DateTime.Now - workout.Date).Days) @:d ago
+                        <td>
+                            @((DateTime.Now - workout.Date).Days)d ago
+                        </td>
                     }
                     else if ((DateTime.Now - workout.Date).Hours > 0)
                     {

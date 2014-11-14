@@ -42,9 +42,15 @@
                     <li>@Html.ActionLink("Forum", "Index", "Articles", new { area = "Forum" }, null)</li>
                     <li>@Html.ActionLink("Insert Article", "InsertArticle", "Articles", new { area = "Forum" }, null)</li>
                     <li>@Html.ActionLink("Articles", "ListOfArticles", "Articles", new { area = "Forum" }, null)</li>
-                    <li>@Html.ActionLink("Admin", "Navigation", "Home", new { area = "Administration" }, null)</li>
-                    <li>@Html.ActionLink("AdminUsers", "GetUsers", "Home", new { area = "Administration" }, null)</li>
-                    <li>@Html.ActionLink("Moderate", "Index", "Moderations", new { area = "Mod" }, null)</li>                     
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li>@Html.ActionLink("Admin", "Navigation", "Home", new { area = "Administration" }, null)</li>
+                        <li>@Html.ActionLink("AdminUsers", "GetUsers", "Home", new { area = "Administration" }, null)</li>
+                    }
+                    @if (User.IsInRole("Admin") || User.IsInRole("Moderator"))
+                    {
+                        <li>@Html.ActionLink("Moderate", "Index", "Moderations", new { area = "Mod" }, null)</li>
+                    }
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

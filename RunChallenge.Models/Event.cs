@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RunChallenge.Models
+﻿namespace RunChallenge.Models
 {
-    public class Event
+    using RunChallenge.Common.Models;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations.Schema;
+
+    public class Event : IAuditInfo, IDeletableEntity
     {
         // may need to delete
         private ICollection<EventUser> eventusers;
@@ -42,5 +41,15 @@ namespace RunChallenge.Models
             }
         }
 
+        public DateTime CreatedOn { get; set; }
+
+        public bool PreserveCreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        [Index]
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
     }
 }
